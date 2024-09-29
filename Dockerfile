@@ -1,4 +1,4 @@
-FROM python:3.10-alpine
+FROM python:3.10-alpine 
 
 WORKDIR /app
 
@@ -10,5 +10,8 @@ RUN pip install --no-cache-dir -r requirements.txt \
 COPY . .
 EXPOSE 5000
 
+RUN adduser -D devops
+USER devops
 
-CMD ["python3", "manage.py", "runserver"]
+
+CMD ["gunicorn", "--bind", "0.0.0.0:5000", "config.wsgi:application"]
