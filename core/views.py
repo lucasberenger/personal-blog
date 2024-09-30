@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
 from .models import Post, Comment, Category
-from .forms import CommentForm
+from .forms import CommentForm, ContactForm
 
 ## Homepage view 
 class HomeView(View):
@@ -68,3 +68,19 @@ class BlogCategoryView(View):
         }
 
         return render(request, 'category.html', context)
+
+
+# About
+class AboutView(View):
+    
+    def get(self, request):
+        return render(request, 'about.html')
+
+
+# Contact 
+class ContactView(View):
+
+    def get(self, request):
+        return render(request, 'contact.html')
+
+    #TODO: add post func, add email settings and stuff
