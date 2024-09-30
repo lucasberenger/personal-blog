@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block page_content %}
+<h1>{{ post.title }}</h1>
 <small>
     {{ post.created_on.date }} | Categories:
     {% for category in post.categories.all %}
