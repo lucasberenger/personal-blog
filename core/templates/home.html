@@ -1,21 +1,33 @@
 {% extends 'base.html' %}
 {% block page_title %}
-    <h2>Blog Posts</h2>
+    <h2></h2>
 {% endblock page_title %}
 
 {% block page_content %}
+    <header>
+        <!--TODO: add image to header -->
+    </header>
     {% block posts %}
+    <div class="container position-relative px-4 px-lg-5 mt-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
         {% for post in posts %}
-            <h3><a href="{% url 'blog_detail' post.pk %}">{{ post.title }}</a></h3>
-            <small>
-                {{ post.created_on.date }} | Categories:
-                {% for category in post.categories.all %}
-                    <a href="{% url 'blog_category' category.name %}">
-                        {{ category.name }}
-                    </a>
-                {% endfor %}
-            </small>
-            <p>{{ post.body | slice:":400" }}...</p>
+            <div>
+                <h1 class="post-heading"><a href="{% url 'blog_detail' post.pk %}">{{ post.title }}</a></h1>
+                <span class="meta">
+                    <h2 class="post-subheading">{{ post.body | slice:":120" }}...</h2>
+                    {{ post.created_on.date }} | Categories:
+                    {% for category in post.categories.all %}
+                        <a href="{% url 'blog_category' category.name %}">
+                            {{ category.name }}
+                        </a>
+                    {% endfor %}
+                </span>
+                <hr>
+            </div>
         {% endfor %}
     {% endblock posts %}
+            </div>
+        </div>
+    </div>
 {% endblock page_content %}

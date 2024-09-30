@@ -17,7 +17,7 @@ class Category(models.Model):
 # Post
 class Post(models.Model):
     title = models.CharField(max_length=100, blank=False)
-    body = models.TextField(max_length=255, blank=False,)
+    body = models.TextField(blank=False,)
     created_on = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
     categories = models.ManyToManyField("Category", related_name="posts")
